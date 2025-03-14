@@ -1,0 +1,21 @@
+/* Styles pour le footer */
+.footer {
+    background-color: #1a1a1a; /* Fond sombre */
+    color: #ffffff; /* Texte blanc */
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-text, .footer-subtext {
+    margin: 5px 0;
+    font-size: 14px;
+}
