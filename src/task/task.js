@@ -22,7 +22,6 @@ export default function Task({ toDo,filtre }) {
 
 function TaskItem({ task }) {
     const [isOpen, setIsOpen] = useState(false);
-
     return (
         <div className="task">
             <div className="task-header" onClick={() => setIsOpen(!isOpen)}>
