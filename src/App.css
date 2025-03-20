@@ -1,4 +1,4 @@
-html, body {
+html, body, #root, .App {
   height: 100%;
   margin: 0;
   display: flex;
@@ -6,7 +6,21 @@ html, body {
 }
 
 .App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  min-height: 100vh; /* Hauteur minimale pour éviter que le footer ne cache le contenu */
+  padding-bottom: 60px; /* Ajuste la hauteur du footer */
+}
+
+body {
+  padding-bottom: 60px; /* Ajuste en fonction de la hauteur du footer */
+}
+
+
+footer {
+  margin-top: auto;
 }
 
 .App-logo {

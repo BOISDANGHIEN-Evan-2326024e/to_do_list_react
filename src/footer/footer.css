@@ -1,21 +1,32 @@
-/* Styles pour le footer */
 .footer {
     background-color: #1a1a1a; /* Fond sombre */
     color: #ffffff; /* Texte blanc */
-    text-align: center;
     padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Sépare les éléments */
+    align-items: center;
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
 }
 
 .footer-text, .footer-subtext {
     margin: 5px 0;
     font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Aligne les boutons à droite */
+    gap: 10px;
+    padding-right: 20px;
 }

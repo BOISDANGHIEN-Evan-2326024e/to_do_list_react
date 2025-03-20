@@ -1,7 +1,7 @@
 .modal {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,15 +14,46 @@
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 250px; /* Empêche que la modal soit trop petite */
+    max-width: 90%; /* Empêche qu'elle soit trop large sur grand écran */
 }
 
-.close {
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.buttonfiltre-button {
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background: white;
     cursor: pointer;
-    font-size: 24px;
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-align: center;
+    min-width: 120px; /* Fixe une largeur minimale */
+    max-width: 180px; /* Évite que les boutons soient trop larges */
+}
+
+/* Cache l'input radio */
+.buttonfiltre-button input {
+    display: none;
+}
+
+/* Style normal */
+.buttonfiltre-button:hover {
+    background: #f0f0f0;
+}
+
+/* Style sélectionné */
+.buttonfiltre-button.active {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
 }

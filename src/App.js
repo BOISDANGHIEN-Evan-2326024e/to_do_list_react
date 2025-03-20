@@ -4,63 +4,32 @@ import Footer from "./footer/footer";
 import Header from "./header/header";
 import Task from "./task/task";
 import Buttonfiltre from "./buttonfiltre/buttonfiltre";
-import {useState} from "react";
+import { useState } from "react";
+import todo from './todo.json';
 
 function App() {
     const [filtreby, setFilter] = useState("Tous");
-    const todoList = [
-        {
-            "intitule": "Acheter des courses",
-            "description": "Acheter du lait, du pain et des œufs",
-            "date_Creation": "2025-03-13",
-            "date_Echeance": "2025-03-14",
-            "statut": "En cours",
-            "Urgent": true,
-            "listeContact": ["Jean", "Marie"],
-            "categorie": "Courses"
-        },
-        {
-            "intitule": "Vendre des courses",
-            "description": "Vendre du lait, du pain et des œufs",
-            "date_Creation": "2025-03-13",
-            "date_Echeance": "2025-03-14",
-            "statut": "En cours",
-            "Urgent": true,
-            "listeContact": ["Jean", "Marie"],
-            "categorie": "Courses"
-        },
-        {
-            "intitule": "Finir le projet React",
-            "description": "Développer la liste des tâches et finaliser le design",
-            "date_Creation": "2025-03-10",
-            "date_Echeance": "2025-03-20",
-            "statut": "À faire",
-            "Urgent": false,
-            "listeContact": ["Paul", "Alice"],
-            "categorie": "Travail"
-        },
-        {
-            "intitule": "Prendre rendez-vous chez le médecin",
-            "description": "Vérifier les disponibilités et appeler pour fixer un RDV",
-            "date_Creation": "2025-03-12",
-            "date_Echeance": "2025-03-18",
-            "statut": "Terminé",
-            "Urgent": false,
-            "listeContact": ["Dr. Martin"],
-            "categorie": "Santé"
-        }
-    ];
+    const [filtreSpec, setFilterSpec] = useState("Alphabetique");
+    const [filtreName, setFilterName] = useState("");
+    const [taches, setTaches] = useState(todo.taches);
 
-  return (
-    <div className="App">
-      <Header />
-        <Buttonfiltre onFilterChange={setFilter}/>
-        <Task toDo={todoList} filtre={filtreby} />
-      <Footer />
-    </div>
+    const categories = todo.categories;
+    const relations = todo.relations;
 
-  );
+    const addTask = (newTask) => {
+        setTaches([...taches, newTask]);
+    };
+
+    return (
+        <div className="App">
+            <Header />
+            <Buttonfiltre onFilterChange={setFilter} onSortChange={setFilterSpec} onfilterName={setFilterName} />
+            <Task toDo={taches} categories={categories} relations={relations} filtre={filtreby} filtreSpec={filtreSpec} filtreName={filtreName} />
+            <footer>
+                <Footer onAddTask={addTask} />
+            </footer>
+        </div>
+    );
 }
-
 
 export default App;
