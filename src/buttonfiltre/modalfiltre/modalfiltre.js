@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import './modalfiltre.css';
 
-export default function ModalFiltre({ onClose, onChange }) {
+export default function ModalFiltre({ onClose, onFilterChange, onSortChange, onCategoryFilterChange, categories }) {
     const [selectedFilter, setSelectedFilter] = useState("");
-
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    console.log(categories[0].id);
     const handleFilterChange = (filter) => {
         setSelectedFilter(filter);
-        onChange(filter);
+        onFilterChange(filter);
+    };
+
+    const handleCategoryChange = (categoryId) => {
+        let updatedCategories;
+        if (selectedCategories.includes(categoryId)) {
+            updatedCategories = selectedCategories.filter(id => id !== categoryId);
+        } else {
+            updatedCategories = [...selectedCategories, categoryId];
+        }
+
+        setSelectedCategories(updatedCategories);
+        onCategoryFilterChange(updatedCategories);
     };
 
     return (
@@ -14,18 +27,31 @@ export default function ModalFiltre({ onClose, onChange }) {
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Filtrer les tâches</h2>
+
+                {/* Filtres standards */}
                 <div className="button-group">
-                    {["Alphabétique", "dateCréation", "DateEcheance", "catégorie"].map((filter) => (
-                        <label key={filter} className={`buttonfiltre-button ${selectedFilter === filter ? "active" : ""}`}>
-                            <input
-                                type="radio"
-                                name="filter"
-                                value={filter}
-                                checked={selectedFilter === filter}
-                                onChange={() => handleFilterChange(filter)}
-                            />
+                    {["Alphabétique", "dateCréation", "DateEcheance"].map((filter) => (
+                        <button
+                            key={filter}
+                            className={`buttonfiltre-button ${selectedFilter === filter ? "active" : ""}`}
+                            onClick={() => handleFilterChange(filter)}
+                        >
                             {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                        </label>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Boutons de catégories */}
+                <h3>Filtrer par catégories</h3>
+                <div className="button-group">
+                    {categories.map(category => (
+                        <button
+                            key={category.id}
+                            className={`category-button ${selectedCategories.includes(category.id) ? "selected" : ""}`}
+                            onClick={() => handleCategoryChange(category.id)}
+                        >
+                            {category.title}
+                        </button>
                     ))}
                 </div>
             </div>

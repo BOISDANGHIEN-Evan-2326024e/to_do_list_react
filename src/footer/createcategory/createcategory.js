@@ -1,25 +1,33 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-export function CreateCategory({onClose}) {
+export function CreateCategory({ onClose, onAddCategory }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [couleur, setCouleur] = useState("#000000");
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        const newCategory = {
+            id: Date.now(),
+            title,
+            description,
+            couleur,
+        };
 
-    function handleSubmit() {
-        console.log("Créer une nouvelle catégorie");
-    }
-
+        onAddCategory(newCategory);
+        onClose();
+    };
 
     return (
-        <div className={"modal"}>
-            <div className={"modal-content"}>
-                <span className="close" onClick={onClose}>&times;</span>
-                <h1>Créer une nouvelle tâche</h1>
+        <div className="modal">
+            <div className="modal-content">
+                <span className="close" onClick={onClose}>
+                    &times;
+                </span>
+                <h1>Créer une nouvelle catégorie</h1>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="title">Titre de la categorie</label>
+                    <label htmlFor="title">Titre de la catégorie</label>
                     <input
                         type="text"
                         id="title"
@@ -28,7 +36,8 @@ export function CreateCategory({onClose}) {
                         onChange={(e) => setTitle(e.target.value)}
                         required
                     />
-                    <label htmlFor="description">Description de la categorie</label>
+
+                    <label htmlFor="description">Description de la catégorie</label>
                     <input
                         type="text"
                         id="description"
@@ -37,7 +46,8 @@ export function CreateCategory({onClose}) {
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
-                    <label htmlFor="couleur">Couleur de la categorie</label>
+
+                    <label htmlFor="couleur">Couleur de la catégorie</label>
                     <input
                         type="color"
                         id="couleur"
@@ -46,6 +56,7 @@ export function CreateCategory({onClose}) {
                         onChange={(e) => setCouleur(e.target.value)}
                         required
                     />
+
                     <button type="submit">Créer</button>
                 </form>
             </div>

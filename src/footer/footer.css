@@ -30,3 +30,68 @@
     gap: 10px;
     padding-right: 20px;
 }
+
+/* footer.css */
+
+/* Positionnement du bouton + en bas à droite */
+.add-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Assure que le bouton est toujours au-dessus des autres éléments */
+}
+
+/* Style du bouton + */
+.add-button {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    border-radius: 50%;
+    background-color: #00b4fa;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+/* Effet au survol du bouton */
+.add-button:hover {
+    background-color: #0de0c3;
+}
+
+/* Menu déroulant */
+.add-menu {
+    position: absolute;
+    bottom: 70px; /* Ajuste la distance par rapport au bouton + */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Style des éléments du menu */
+.menu-item {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-bottom: 5px;
+}
+
+/* Effet au survol des éléments du menu */
+.menu-item:hover {
+    background-color: #f1f1f1;
+}
+

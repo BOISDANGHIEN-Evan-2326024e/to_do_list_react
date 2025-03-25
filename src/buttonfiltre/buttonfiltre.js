@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./buttonfiltre.css";
 import ModalFiltre from "./modalfiltre/modalfiltre";
 
-export default function ButtonFiltre({ onFilterChange, onSortChange, onfilterName }) {
+export default function ButtonFiltre({ onFilterChange, onSortChange, onfilterName, onCategoryFilterChange ,categories }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState("");
     const [filterName, setFilterName] = useState("");
@@ -23,7 +23,7 @@ export default function ButtonFiltre({ onFilterChange, onSortChange, onfilterNam
                 <i className="fa fa-filter"> {selectedFilter}</i>
             </button>
 
-            {isModalOpen && <ModalFiltre onClose={() => setIsModalOpen(false)} onChange={handleSortChange} />}
+            {isModalOpen && <ModalFiltre onClose={() => setIsModalOpen(false)} onFilterChange={onSortChange} onChange={handleSortChange} onCategoryFilterChange={onCategoryFilterChange} categories={categories} />}
         </div>
     );
 }
