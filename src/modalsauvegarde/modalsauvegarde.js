@@ -1,5 +1,5 @@
 import React from "react";
-import "./modalsauvegarde.css"; // Import du CSS pour le style
+import "./modalsauvegarde.css";
 
 export default function ModalSauvegarde({ onChoice }) {
     return (

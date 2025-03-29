@@ -46,8 +46,10 @@ export default function CreateTask({ onClose, onAddTask, categories, onAddRelati
     return (
         <div className="modal">
             <div className="modal-content">
-                <span className="close" onClick={onClose}>&times;</span>
-                <h1>Créer une nouvelle tâche</h1>
+                <div className="modal-header">
+                    <h1>Créer une nouvelle tâche</h1>
+                    <span className="close" onClick={onClose}>&times;</span>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="title">Titre de la tâche</label>
                     <input
