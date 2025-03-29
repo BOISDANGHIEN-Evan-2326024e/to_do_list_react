@@ -6,6 +6,7 @@ import Task from "./task/task";
 import Buttonfiltre from "./buttonfiltre/buttonfiltre";
 import todo from './todo.json';
 import ModalSauvegarde from "./modalsauvegarde/modalsauvegarde";
+import ModalEditTask from "./task/task-data/modal-edit-task/ModalEditTask";
 
 function App() {
     const [filtreby, setFilter] = useState("Tous");
@@ -16,6 +17,8 @@ function App() {
     const [categories, setCategories] = useState([]);
     const [relations, setRelations] = useState([]);
     const [showModal, setShowModal] = useState(true);
+    const [taskToEdit, setTaskToEdit] = useState(null);
+
 
     const handleModalChoice = (useExistingData) => {
         if (useExistingData) {
@@ -38,7 +41,6 @@ function App() {
         setCategories([...categories, newCategory]);
     };
 
-    // Mettre à jour les relations en une seule fois
     const addRelation = (newRelation) => {
         setRelations(prevRelations => [...prevRelations, ...newRelation]);
     };
@@ -46,6 +48,25 @@ function App() {
     const onCategoryFilterChange = (newFilter) => {
         setFilterCategory(newFilter);
     };
+
+    const updateTask = (updatedTask) => {
+        setTaches((prevTaches) =>
+            prevTaches.map(task => task.id === updatedTask.id ? updatedTask : task)
+        );
+
+        setRelations((prevRelations) => {
+            const filteredRelations = prevRelations.filter(rel => rel.tache !== updatedTask.id);
+
+            const newRelations = updatedTask.categories.map(catId => ({
+                tache: updatedTask.id,
+                categorie: catId
+            }));
+
+            return [...filteredRelations, ...newRelations];
+        });
+    };
+
+
 
     function updateTaskStatus(id) {
         setTaches(prevTaches =>
@@ -60,13 +81,17 @@ function App() {
             {showModal && <ModalSauvegarde onChoice={handleModalChoice} />} {/* Affichage de la modale */}
 
             <Header />
-            <Buttonfiltre
-                onFilterChange={setFilter}
-                onSortChange={setFilterSpec}
-                onfilterName={setFilterName}
-                onCategoryFilterChange={onCategoryFilterChange}
-                categories={categories}
-            />
+
+            {taches.length > 0 && (
+                <Buttonfiltre
+                    onFilterChange={setFilter}
+                    onSortChange={setFilterSpec}
+                    onfilterName={setFilterName}
+                    onCategoryFilterChange={onCategoryFilterChange}
+                    categories={categories}
+                />
+            )}
+
             <Task
                 toDo={taches}
                 categories={categories}
@@ -76,7 +101,9 @@ function App() {
                 filtreName={filtreName}
                 filtreCategory={filtreCategory}
                 onUpdateTask={updateTaskStatus}
+                setTaskToEdit={setTaskToEdit}
             />
+
             <footer>
                 <Footer
                     onAddTask={addTask}
@@ -85,6 +112,14 @@ function App() {
                     onAddRelation={addRelation}
                 />
             </footer>
+            {taskToEdit && (
+                <ModalEditTask
+                    task={taskToEdit}
+                    onClose={() => setTaskToEdit(null)}
+                    onSave={updateTask}
+                    categories={categories}
+                />
+            )}
         </div>
     );
 }

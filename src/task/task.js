@@ -2,7 +2,8 @@ import TaskData from "./task-data/task-data";
 import "./task.css";
 import { useState } from "react";
 
-export default function Task({ toDo, categories, relations, filtre, filtreSpec, filtreName, filtreCategory, onUpdateTask }) {
+export default function Task({ toDo, categories, relations, filtre, filtreSpec, filtreName, filtreCategory, onUpdateTask, setTaskToEdit }) {
+    console.log(categories)
     let tasksWithCategories = toDo.map(task => {
         const taskRelations = relations.filter(rel => rel.tache === task.id);
         const taskCategories = taskRelations.map(rel => {
@@ -28,12 +29,10 @@ export default function Task({ toDo, categories, relations, filtre, filtreSpec, 
         tasksWithCategories.sort((a, b) => a.date_creation.localeCompare(b.date_creation));
     }
 
-    // Filtre par nom de tâche
     if (filtreName && filtreName.length > 2) {
         tasksWithCategories = tasksWithCategories.filter(task => task.title.includes(filtreName));
     }
 
-    // Filtre par catégories (doit contenir au moins une des catégories sélectionnées)
     if (filtreCategory.length > 0) {
         tasksWithCategories = tasksWithCategories.filter(task =>
             task.categories.some(cat => filtreCategory.includes(cat.id))
@@ -46,7 +45,7 @@ export default function Task({ toDo, categories, relations, filtre, filtreSpec, 
                 {tasksWithCategories.map((task, index) => {
                     let taskDone = task.done ? "Terminé" : "En cours";
                     if (filtre === "Tous" || taskDone === filtre) {
-                        return <TaskItem key={index} task={task} onUpdateTask={onUpdateTask} />;
+                        return <TaskItem key={index} task={task} onUpdateTask={onUpdateTask} onEditTask={setTaskToEdit} />;
                     }
                 })}
             </ul>
@@ -54,7 +53,7 @@ export default function Task({ toDo, categories, relations, filtre, filtreSpec, 
     );
 }
 
-function TaskItem({ task, onUpdateTask }) {
+function TaskItem({ task, onUpdateTask, onEditTask }) {
     const [isOpen, setIsOpen] = useState(false);
 
     let taskStatus = task.done ? (
@@ -73,7 +72,6 @@ function TaskItem({ task, onUpdateTask }) {
                 <h2 className="task-title">{task.title}</h2>
                 <p className="categorie-badge date">{task.date_echeance}</p>
 
-                {/* Affiche uniquement les 2 premières catégories */}
                 <p>
                     {task.categories.length > 0 ? (
                         task.categories.slice(0, 2).map(cat => (
@@ -88,7 +86,7 @@ function TaskItem({ task, onUpdateTask }) {
 
                 <p className="categorie-badge">{taskStatus}</p>
             </div>
-            {isOpen && <TaskData task={task} onUpdateTask={onUpdateTask} />}
+            {isOpen && <TaskData task={task} onUpdateTask={onUpdateTask} onEditTask={onEditTask} />}
         </div>
     );
 }

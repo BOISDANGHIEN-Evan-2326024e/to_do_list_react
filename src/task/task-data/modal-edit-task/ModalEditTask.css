@@ -1,0 +1,165 @@
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    width: 500px;
+    max-width: 90%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-header h1 {
+    font-size: 22px;
+    margin: 0;
+    color: #333;
+}
+
+.close {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+    padding: 5px;
+}
+
+.close:hover {
+    color: red;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+label {
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: left;
+    color: #333;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #3b82f6;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+.urgent-label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.urgent-label input {
+    margin-right: 10px;
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.category-button {
+    padding: 10px 15px;
+    border: 2px solid #007bff;
+    background: white;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.category-button:hover {
+    background: #007bff;
+    color: white;
+}
+
+.category-button.selected {
+    background: #007bff;
+    color: white;
+}
+
+.modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-secondary {
+    background: #e3e3e3;
+    color: black;
+}
+
+.btn-secondary:hover {
+    background: #c3c3c3;
+}
+
+.description-textarea {
+    width: 300px;  /* Définir la largeur souhaitée, par exemple 300px */
+    resize: none;  /* Empêcher le redimensionnement de la zone de texte */
+    padding: 10px;  /* Ajouter un padding interne pour un meilleur confort visuel */
+    font-size: 14px;  /* Ajuster la taille du texte à l'intérieur */
+    border-radius: 5px;  /* Coins arrondis */
+    border: 1px solid #ccc;  /* Ajouter une bordure */
+}
+

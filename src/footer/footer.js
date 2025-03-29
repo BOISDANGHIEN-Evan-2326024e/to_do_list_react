@@ -7,16 +7,14 @@ import { CreateCategory } from "./createcategory/createcategory";
 export default function Footer({ onAddTask, onAddCategory, categories, onAddRelation }) {
     const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
     const [isModalCategoryOpen, setIsModalCategoryOpen] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Etat pour ouvrir/fermer le menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const year = new Date().getFullYear();
 
-    // Fonction pour gérer l'ouverture/fermeture du menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    // Fonction pour fermer le menu après une action
     const handleCloseMenu = () => {
         setIsMenuOpen(false);
     };
@@ -28,20 +26,18 @@ export default function Footer({ onAddTask, onAddCategory, categories, onAddRela
                 <p className="footer-subtext">Designed with ❤️ by Evan</p>
             </div>
 
-            {/* Bouton "+" pour ouvrir le menu */}
             <div className="add-button-container">
                 <button className="add-button" onClick={toggleMenu}>
                     +
                 </button>
 
-                {/* Menu déroulant */}
                 {isMenuOpen && (
                     <div className="add-menu">
                         <button className="menu-item" onClick={() => { setIsModalTaskOpen(true); handleCloseMenu(); }}>
                             Créer une nouvelle tâche
                         </button>
                         <button className="menu-item" onClick={() => { setIsModalCategoryOpen(true); handleCloseMenu(); }}>
-                            Créer une nouvelle Catégorie
+                            Créer une nouvelle catégorie
                         </button>
                     </div>
                 )}

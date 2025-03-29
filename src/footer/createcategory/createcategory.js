@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export function CreateCategory({ onClose, onAddCategory }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [couleur, setCouleur] = useState("#000000");
+    const [color, setCouleur] = useState("#000000");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,7 +12,7 @@ export function CreateCategory({ onClose, onAddCategory }) {
             id: Date.now(),
             title,
             description,
-            couleur,
+            color,
         };
 
         onAddCategory(newCategory);
@@ -52,7 +52,8 @@ export function CreateCategory({ onClose, onAddCategory }) {
                         type="color"
                         id="couleur"
                         name="couleur"
-                        value={couleur}
+                        style={{height : "50px", width: "220px"}}
+                        value={color}
                         onChange={(e) => setCouleur(e.target.value)}
                         required
                     />

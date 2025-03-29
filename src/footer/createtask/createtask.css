@@ -181,6 +181,34 @@ input[type="date"] {
     color: white;
 }
 
+/* createtask.css */
+
+/* Conteneur des contacts */
+.contacts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacement entre les bulles */
+    margin-top: 10px;
+    justify-content: center; /* Centrer les bulles */
+}
+
+/* Bulle pour chaque contact */
+.contact-bubble {
+    background-color: #3b82f6; /* Couleur de fond bleu */
+    color: white; /* Couleur du texte en blanc */
+    padding: 8px 12px;
+    border-radius: 20px; /* Coins arrondis pour la bulle */
+    font-size: 14px;
+    display: inline-block; /* Pour éviter que les bulles prennent toute la largeur */
+    cursor: default; /* Pas de curseur pointer, juste pour afficher */
+}
+
+/* Ajouter un style pour le bouton de suppression (si nécessaire) */
+.contact-bubble:hover {
+    background-color: #2563eb; /* Changer la couleur en survol */
+}
+
+
 
 
 

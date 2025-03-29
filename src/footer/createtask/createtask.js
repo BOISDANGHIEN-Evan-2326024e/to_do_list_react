@@ -111,11 +111,15 @@ export default function CreateTask({ onClose, onAddTask, categories, onAddRelati
                     >
                         Ajouter
                     </button>
-                    <ul>
+
+                    <div className="contacts-container">
                         {contacts.map(contact => (
-                            <li key={contact.id}>{contact.name}</li>
+                            <div key={contact.id} className="contact-bubble">
+                                {contact.name}
+                            </div>
                         ))}
-                    </ul>
+                    </div>
+
                     <label>Catégories</label>
                     <div className="categories-container">
                         {categories.map(cat => (
